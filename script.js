@@ -8,6 +8,8 @@ window.onload = () => {
     let messages = document.getElementById('messages')
     let message_box = document.getElementById('messageBox')
     let send_btn = document.getElementById('send')
+    let color = set_user_color()
+
 
     send_btn.addEventListener('click', send_message)
     window.addEventListener('keydown', function(e){
@@ -17,7 +19,11 @@ window.onload = () => {
         }
     })
 
-    let color = set_user_color()
+    window.onclose = () => {
+        quit = `User ${nickname} left the chat... `
+        socket.emit('chat message', quit)
+        window.open(location, '_self').close();
+    }
 
     function send_message(){
 

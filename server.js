@@ -23,7 +23,6 @@ io.on('connection', (socket) => {
 
     socket.on('chat message', (message) => {
         console.log(`message: ${message}`)
-
         socket.broadcast.emit('send_to_clients', `${message}`)
     })
 
@@ -33,7 +32,11 @@ io.on('connection', (socket) => {
 })
 
 
-//delete ip in 2nd arg later 
-server.listen(PORT,() => {
+let ip = 'localhost' 
+//specify the ip of the host in 2nd arg  
+//  right there ____    
+//                 |
+//                 v
+server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`)
 })
